@@ -31,7 +31,6 @@ public:
 	void insert(std::string name, std::string sport);
 	int countItemsInBucket(int index);
 	bool isBucketEmpty(int index) const;
-	void printTable();
 	std::string findSport(std::string name);
 	friend std::ostream& operator<<(std::ostream &out, const Hash &h);
 };

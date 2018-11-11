@@ -65,10 +65,6 @@ int Hash::countItemsInBucket(int index) {
 	return count;
 }
 
-void Hash::printTable() {
-
-}
-
 std::ostream& operator<<(std::ostream &out, const Hash &h) {
 	for (int i = 0; i < h.tablesize; ++i) {
 		out << "[" << i << "]: ";
