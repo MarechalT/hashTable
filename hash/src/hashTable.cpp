@@ -102,3 +102,50 @@ std::string Hash::findSport(std::string name) {
 bool Hash::isBucketEmpty(int index) const {
 	return (hashTable[index]->name == "" && hashTable[index]->sport == "");
 }
+
+void Hash::resetItem(item& i) {
+	i.name = "";
+	i.sport = "";
+	i.next = nullptr;
+}
+
+bool Hash::remove(std::string name) {
+	int index = hash(name);
+	bool foundName = false;
+
+	//init iptr1 to point to the first element of the LinkedList/Bucket
+	item* iptr1 = hashTable[index];
+
+	//Split the algorithm in few steps of checking:
+
+	if (!isBucketEmpty(index)) {
+		//1 - 1st item matching and no more item
+		if (iptr1->name == name && iptr1->next == nullptr) {
+			resetItem(*iptr1);
+			return true;
+		}
+		//3 - 1st item but more items
+		else if (iptr1->name == name && iptr1->next != nullptr) {
+			hashTable[index] = hashTable[index]->next;
+			delete iptr1;
+			return true;
+		}
+		//4 - Bucket contains items but 1st is not a match
+
+		item* iptr2 = iptr1->next;
+		while (iptr2 != nullptr && iptr2->name != name) {
+			iptr1 = iptr2;
+			iptr2 = iptr2->next;
+		}
+
+		if (iptr2 != nullptr) {
+			item* iptr3 = iptr2;	//ptr to delete "n"
+			iptr2 = iptr2->next;		// "n" = "n+1"
+			iptr1->next = iptr2;	//"n-1 -> next " = "n"
+			delete iptr3;			//delete previous "n"
+			return true;
+		}
+	}
+	return foundName;
+}
+

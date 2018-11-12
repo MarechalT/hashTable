@@ -26,14 +26,18 @@ int main() {
 	h.insert("Maciej", "Sauna");
 	h.insert("Ewa", "Shooting");
 	h.insert("Slawomir", "BodyBuilding");
-	h.insert("Maximus","Bricolage");
-	h.insert("William","Basketball");
-	h.insert("Portos","Rugby");
+	h.insert("Maximus", "Bricolage");
+	h.insert("William", "Basketball");
+	h.insert("Portos", "Rugby");
 
 	cout << h << endl;
-
-	cout << "Weronika's sport is: " << h.findSport("Weronika") << endl;
-	cout << "Jean-Louis's sport is: " <<h.findSport("Jean-Louis") << endl;
-
+	std::string name;
+	while (name != "exit") {
+		cout << "Remove: ";
+		cin >> name;
+		if (name != "exit")
+			cout << h.remove(name) << " for " << name << endl;
+		cout << h << endl;
+	}
 	return 0;
 }

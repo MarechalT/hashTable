@@ -32,7 +32,10 @@ public:
 	int countItemsInBucket(int index);
 	bool isBucketEmpty(int index) const;
 	std::string findSport(std::string name);
+	bool remove(std::string name);
+	void resetItem(item&);
 	friend std::ostream& operator<<(std::ostream &out, const Hash &h);
+
 };
 
 #endif /* HASHTABLE_H_ */
